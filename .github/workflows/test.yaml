@@ -1,9 +1,22 @@
 name: gh actions
 on: [push]
 jobs:
-    test-gh-action:
+    build-app:
       runs-on: ubuntu-latest
       steps:
-        - run: echo "Hello world!"
-        - run: echo "This is a bash command"
+        - uses: actions/checkout@v2
+        - uses: actions/node@v2
+          with:
+            node-version: 16
+        - name: Install node_modules
+          run: yarn
+        - name: Build packaged bundle
+          run: yarn build
+        - name: Complete build
+          run: echo "Build completed"
+        
+
+
+            
+        
         
